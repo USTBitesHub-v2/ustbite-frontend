@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   USTBite Design System
+   Strict brand palette — all colors HSL.
+   Primary: #0F172A  Accent: #EF4444  Secondary Accent: #F97316
+   Surface: #FFFFFF  Text Secondary: #64748B  Border: #E2E8F0
+   Success: #22C55E  Amber (highlight): #F59E0B
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --background: hsl(0 0% 100%);              /* #FFFFFF surface */
+  --surface-soft: hsl(210 40% 98%);          /* #F8FAFC subtle bg */
+  --foreground: hsl(222 47% 11%);            /* #0F172A text primary */
+  --text-secondary: hsl(215 16% 47%);        /* #64748B */
+  --border-soft: hsl(214 32% 91%);           /* #E2E8F0 */
+  --border-card: hsl(220 13% 91%);           /* #E5E7EB */
+
+  --brand-navy: hsl(222 47% 11%);            /* #0F172A nav/dark */
+  --brand-charcoal: hsl(240 2% 11%);         /* #1C1C1E footer */
+  --brand-amber: hsl(38 92% 50%);            /* #F59E0B */
+  --brand-amber-soft: hsl(48 96% 89%);       /* light amber pill bg */
+  --accent-red: hsl(0 84% 60%);              /* #EF4444 CTA */
+  --accent-orange: hsl(20 90% 53%);          /* #F97316 */
+  --success: hsl(142 71% 45%);               /* #22C55E */
+
+  /* Shadcn tokens mapped to brand */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 47% 11%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 47% 11%);
+  --primary: hsl(222 47% 11%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 40% 98%);
+  --secondary-foreground: hsl(222 47% 11%);
+  --muted: hsl(210 40% 96%);
+  --muted-foreground: hsl(215 16% 47%);
+  --accent: hsl(38 92% 50%);                 /* amber */
+  --accent-foreground: hsl(222 47% 11%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(214 32% 91%);
+  --input: hsl(214 32% 91%);
+  --ring: hsl(38 92% 50%);
+  --radius: 0.5rem;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-surface-soft: var(--surface-soft);
+  --color-foreground: var(--foreground);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-soft: var(--border-soft);
+  --color-border-card: var(--border-card);
+
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-amber: var(--brand-amber);
+  --color-brand-amber-soft: var(--brand-amber-soft);
+  --color-accent-red: var(--accent-red);
+  --color-accent-orange: var(--accent-orange);
+  --color-success: var(--success);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.4s ease-out;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { font-family: var(--font-sans); }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4 { font-family: var(--font-sans); letter-spacing: -0.02em; }
+  .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-amber);
+    outline-offset: 2px;
+  }
+
+  /* Shadow utility tuned for cards */
+  .shadow-card {
+    box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06);
+  }
+  .shadow-card-hover {
+    box-shadow: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 6px -2px rgb(15 23 42 / 0.05);
+  }
+
+  @keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .animate-pulse {
+    animation: skeleton-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
